@@ -1,0 +1,6 @@
+pandas
+openpyxl
+git+https://github.com/big-decisions/llmsinferer.git
+scikit-learn
+xgboost
+matplotlib

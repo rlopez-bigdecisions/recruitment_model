@@ -1,0 +1,41 @@
+"analyze_cv":
+
+  1: |
+    In the next user prompt I will supply a CV. Analyze it and return the information asked below in a structured JSON format. Do not include any header as 'json' or any other text in the output, just the JSON object where each of the following fields will be a key:
+    - professionality
+    - visual
+    - grammar
+    - ai_likelihood
+    - education
+    - experience
+    - languages
+    For the fields "professionality", "visual", "grammar", and "ai_likelihood", please provide as value of the key only a score from 1 to 10, where 1 is the lowest and 10 is the highest. Do not provide any explanations or justifications for these scores. Just the score.
+    For the sections "education", "experience", and "languages", please provide as value of the key a structured summary in JSON format, with the following considerations for each section:
+    - education: extract all the relevant degrees, diplomas, or certifications. Return a JSON list of dictionaries where each dictionary represents one degree, diploma, or certification. Each dictionary should include the following fields:
+      - level: standardized level of education. Use only one of these: Primary, Secondary, Preparatory, Vocational, Diploma, Associate, Bachelor, Postgraduate Diploma, Master, Doctorate, Non-regulated Course, Other
+      - field: main area of study (e.g. Computer Science, Marketing...)
+      - related: whether the degree is related with the field of marketing, telemarketing, or sales (true or false)
+      - where: institution or location where it was obtained
+      The JSON list should look like this:
+    [{{"level": "Bachelor", "field": "Computer Science", "related": true, "where": "University of Example"}}, {{"level": "Master", "field": "Marketing", "related": true, "where": "Example University"}}]
+    Do not include any header as 'json' or any other text in the output, just the JSON list.
+    - experience: extract all the relevant positions, roles, or experiences held. Return a JSON list of dictionaries where each dictionary represents one position, role, or experience held. Each dictionary should include the following fields:
+      - position: the title of the position held
+      - responsibility_level: standardized level of responsibility. Use only one of these: Entry, Intermediate, Senior, Manager, Director, Executive, Other
+      - company: the name of the company or organization
+      - start_date: the start date of the position (in YYYY-MM-DD format)
+      - end_date: the end date of the position (in YYYY-MM-DD format)
+      - duration: the duration of the position (in months)
+      - related: whether the position is related with the field of marketing, telemarketing, or sales (true or false)
+      The JSON list should look like this:
+      [{{"position": "Marketing Manager", "responsibility_level": "Manager", "company": "Example Corp", "start_date": "2020-01-01", "end_date": "2021-01-01", "duration": 12, "related": true}}, {{"position": "Sales Associate", "responsibility_level": "Entry", "company": "Example Inc.", "start_date": "2019-01-01", "end_date": "2020-01-01", "duration": 12, "related": false}}]
+      Do not include any header as 'json' or any other text in the output, just the JSON list.
+    - languages: extract all the languages spoken by the candidate. Return a JSON list of dictionaries where each dictionary represents one language spoken. Each dictionary should include the following fields:
+      - language: the name of the language
+      - level: the level of proficiency in the language. Use only one of these: Basic, Intermediate, Advanced, Fluent, Native, Other
+      The JSON list should look like this:
+      [{{"language": "English", "level": "Fluent"}}, {{"language": "Spanish", "level": "Native"}}]
+      Do not include any header as 'json' or any other text in the output, just the JSON list.
+    This is an example of the complete JSON output:
+    {{"professionality_score": 8, "design_visual_appeal_score": 7, "grammar_quality_score": 9, "ai_usage_likelihood": 6, "education_summary": [{{"level": "Bachelor", "field": "Computer Science", "related": true, "where": "University of Example"}}, {{"level": "Master", "field": "Marketing", "related": true, "where": "Example University"}}], "experience_summary": [{{"position": "Marketing Manager", "responsibility_level": "Manager", "company": "Example Corp", "start_date": "2020-01-01", "end_date": "2021-01-01", "duration": 12, "related": true}}, {{"position": "Sales Associate", "responsibility_level": "Entry", "company": "Example Inc.", "start_date": "2019-01-01", "end_date": "2020-01-01", "duration": 12, "related": false}}], "languages_spoken":[{{"language":"English","level":"Fluent"}},{{"language":"Spanish","level":"Native"}}]}}
+    Remember not to include any header as 'json' or any other text in the output. Simply return the JSON object as it is.
